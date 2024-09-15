@@ -57,32 +57,37 @@ publishing {
             }
 
             pom {
+                val github = "https://github.com/volo-droid/compose-permission-dialog"
+
                 if (!"USE_SNAPSHOT".byProperty.isNullOrBlank()) {
                     version = "$version-SNAPSHOT"
                 }
-                description.set("A template for Kotlin Android projects")
-                url.set("https://github.com/cortinico/kotlin-android-template/")
+                description.set(
+                    "Jetpack Compose library to show Android permission dialog " +
+                            "with different ways of handling permission denied scenario"
+                )
+                url.set(github)
 
                 licenses {
                     license {
-                        name.set("The MIT License")
-                        url.set("https://opensource.org/licenses/MIT")
+                        name.set("Apache 2.0 License")
+                        url.set("$github/blob/HEAD/LICENSE")
                     }
                 }
                 developers {
                     developer {
-                        id.set("cortinico")
-                        name.set("Nicola Corti")
+                        id.set("volo-droid")
+                        name.set("Volodymyr Galandzij")
                     }
                 }
                 scm {
-                    connection.set("scm:git:git://github.com/cortinico/kotlin-android-template.git")
-                    developerConnection.set("scm:git:ssh://github.com/cortinico/kotlin-android-template.git")
-                    url.set("https://github.com/cortinico/kotlin-android-template/")
+                    url.set(github)
+                    connection.set(github.replace("https:", "scm:git:git:") + ".git")
+                    connection.set(github.replace("https:", "scm:git:ssh:") + ".git")
                 }
                 issueManagement {
                     system.set("GitHub Issues")
-                    url.set("https://github.com/cortinico/kotlin-android-template/issues")
+                    url.set("$github/issues")
                 }
             }
         }

@@ -28,14 +28,14 @@ tasks.register("templateCleanup") {
         )
         file("buildSrc/src/main/java/Coordinates.kt").replace(
             "com.ncorti.kotlin.template",
-            "com.github.$owner.$name"
+            "dev.volo.compose.permission"
         )
 
         file("buildSrc/src/main/kotlin/publish.gradle.kts").apply {
             replace("cortinico/kotlin-android-template", "$owner/$name")
             replace("cortinico/kotlin-android-template", "$owner/$name")
             replace("cortinico", owner)
-            replace("Nicola Corti", owner)
+            replace("Nicola Corti", "Volodymyr Galandzij")
             // Keep the link to the original script
             replace(
                 "* https://github.com/$owner/$name/blob/master/buildSrc/src/main/kotlin/publish.gradle.kts",
@@ -93,14 +93,14 @@ fun changePackageName(owner: String, name: String) {
         it.walk().filter {
             it.isFile && (it.extension == "kt" || it.extension == "kts" || it.extension == "xml")
         }.forEach {
-            it.replace("com.ncorti.kotlin.template", "com.github.$owner.$name")
+            it.replace("com.ncorti.kotlin.template", "dev.volo.compose.permission")
         }
     }
     srcDirectories().forEach {
         it.listFiles()!!.filter { it.isDirectory } // down to src/main
             .flatMap { it.listFiles()!!.filter { it.isDirectory } } // down to src/main/java
             .forEach {
-                val newDir = File(it, "com/github/$owner/$name")
+                val newDir = File(it, "dev/volo/compose/permission")
                 newDir.parentFile.mkdirs()
                 File(it, "com/ncorti/kotlin/template").renameTo(newDir)
                 File(it, "com/ncorti").deleteRecursively()

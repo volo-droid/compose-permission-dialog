@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.min.sdk.version.get().toInt()
-        namespace = "com.ncorti.kotlin.template.library.compose"
+        namespace = "dev.volo.compose.permission"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
