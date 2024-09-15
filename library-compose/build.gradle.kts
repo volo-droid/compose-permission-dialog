@@ -3,6 +3,10 @@ plugins {
     kotlin("android")
 }
 
+kotlin {
+    explicitApi()
+}
+
 android {
     compileSdk = libs.versions.compile.sdk.version.get().toInt()
 
@@ -44,12 +48,12 @@ android {
 }
 
 dependencies {
-    implementation(projects.libraryKotlin)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core.ktx)
 
     implementation(platform(libs.compose.bom))
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.lifecycle.compose)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling)
     implementation(libs.compose.foundation)

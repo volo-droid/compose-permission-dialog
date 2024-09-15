@@ -16,6 +16,7 @@ kotlin = "1.9.20"
 min_sdk_version = "23"
 target_sdk_version = "34"
 benmanesversion = "0.51.0"
+lifecycle_version = "2.8.5"
 
 [libraries]
 junit = { module = "junit:junit", version.ref = "junit" }
@@ -23,6 +24,7 @@ androidx_activity_compose = { module = "androidx.activity:activity-compose", ver
 androidx_appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 androidx_constraint_layout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraint.layout" }
 androidx_core_ktx = { module = "androidx.core:core-ktx", version.ref = "core.ktx" }
+androidx_lifecycle_compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle_version" }
 androidx_test_rules = { module = "androidx.test:rules", version.ref = "androidx.test" }
 androidx_test_runner = { module = "androidx.test:runner", version.ref = "androidx.test" }
 androidx_test_ext_junit = { module = "androidx.test.ext:junit", version.ref = "androidx.test.ext" }
