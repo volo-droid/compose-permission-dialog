@@ -34,21 +34,21 @@ import androidx.lifecycle.LifecycleEventObserver
  * If denied, the user might need to be presented with a rationale.
  */
 @Stable
-public sealed interface PermissionStatus {
-    public data object Granted : PermissionStatus
-    public data class Denied(val shouldShowRationale: Boolean) : PermissionStatus
+internal sealed interface PermissionStatus {
+    data object Granted : PermissionStatus
+    data class Denied(val shouldShowRationale: Boolean) : PermissionStatus
 }
 
 /**
  * `true` if the permission is granted.
  */
-public val PermissionStatus.isGranted: Boolean
+internal val PermissionStatus.isGranted: Boolean
     get() = this == PermissionStatus.Granted
 
 /**
  * `true` if a rationale should be presented to the user.
  */
-public val PermissionStatus.shouldShowRationale: Boolean
+internal val PermissionStatus.shouldShowRationale: Boolean
     get() = when (this) {
         is PermissionStatus.Granted -> false
         is PermissionStatus.Denied -> shouldShowRationale

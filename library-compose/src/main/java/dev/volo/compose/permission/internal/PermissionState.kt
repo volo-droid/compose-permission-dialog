@@ -54,17 +54,17 @@ internal fun rememberPermissionState(
  * [documentation](https://developer.android.com/training/permissions/requesting#workflow_for_requesting_permissions).
  */
 @Stable
-public interface PermissionState {
+internal interface PermissionState {
 
     /**
      * The permission to control and observe.
      */
-    public val permission: String
+    val permission: String
 
     /**
      * [permission]'s status
      */
-    public val status: PermissionStatus
+    val status: PermissionStatus
 
     /**
      * Request the [permission] to the user.
@@ -77,5 +77,5 @@ public interface PermissionState {
      * again or has denied the permission multiple times.
      * This behavior varies depending on the Android level API.
      */
-    public fun launchPermissionRequest(): Unit
+    fun launchPermissionRequest(): Unit
 }
