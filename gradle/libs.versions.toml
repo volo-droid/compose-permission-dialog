@@ -1,22 +1,22 @@
 [versions]
-agp = "8.5.1"
-androidx_activity_compose = "1.9.1"
+agp = "8.5.2"
+androidx_activity_compose = "1.9.2"
 androidx_test = "1.6.1"
 androidx_test_ext = "1.2.1"
 appcompat = "1.7.0"
 compile_sdk_version = "34"
-compose-bom = "2024.06.00"
-compose_compilerextension = "1.5.5"
+compose-bom = "2024.09.02"
+compose_compilerextension = "1.5.15"
 constraint_layout = "2.1.4"
 core_ktx = "1.13.1"
 detekt = "1.23.6"
 espresso_core = "3.6.1"
 junit = "4.13.2"
-kotlin = "1.9.20"
+kotlin = "1.9.25"
 min_sdk_version = "23"
 target_sdk_version = "34"
 benmanesversion = "0.51.0"
-lifecycle_version = "2.8.5"
+lifecycle_version = "2.8.6"
 
 [libraries]
 junit = { module = "junit:junit", version.ref = "junit" }
