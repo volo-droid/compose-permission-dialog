@@ -103,7 +103,7 @@ public fun PermissionDialog(
                 },
             )
         }
-        onPermanentlyDenied.dialog(customDialogState)
+        onPermanentlyDenied.content(customDialogState)
     }
 }
 
@@ -136,10 +136,11 @@ public sealed interface OnPermissionPermanentlyDenied {
 
     public data class ShowCustomDialog(
         public val actionIntent: (packageName: String) -> Intent = ::openSystemSettingsIntent,
-        public val dialog: @Composable (PermissionCustomDialogState) -> Unit,
+        public val content: @Composable (PermissionCustomDialogState) -> Unit,
     ) : OnPermissionPermanentlyDenied
 }
 
+@Stable
 public class PermissionCustomDialogState(
     private val onDismiss: () -> Unit,
     private val onOpenSystemSettings: () -> Unit,
