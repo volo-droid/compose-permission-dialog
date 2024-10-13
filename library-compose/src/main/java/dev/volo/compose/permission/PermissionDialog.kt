@@ -34,6 +34,45 @@ import dev.volo.compose.permission.OnPermissionPermanentlyDenied.ShowCustomDialo
 import dev.volo.compose.permission.internal.isGranted
 import dev.volo.compose.permission.internal.rememberPermissionState
 
+/**
+ * Composable that shows Android permission dialog, calling the respective callbacks when
+ * the permission has been granted or denied, and allowing to perform a custom action when the
+ * permission has been permanently denied by the user or the system (i.e. when the user
+ * has selected the 'Never ask me again' option on older Android versions,
+ * or denied the permission more than one time on newer Android versions).
+ *
+ * @param permission the permission to request
+ *
+ * @param onGranted callback that will be called if the permission has been granted
+ *
+ * @param onDenied callback that will be called if the permission has been denied
+ *
+ * @param onPermanentlyDenied optional action to execute when the permission was permanently denied.
+ * This can be one of:
+ * - [Execute] - call a specific lambda block, this is the default option which simply calls
+ * the [onDenied] callback, if the permission has been permanently denied.
+ *
+ * - [OpenSystemSettings] - open the Android system settings, by default it opens the app settings,
+ * if necessary that can be overridden with the [actionIntent][OpenSystemSettings.actionIntent]
+ * parameter.
+ *
+ * - [ShowCustomDialog] - show a custom dialog composable, you can specify the composable using
+ * the [content][ShowCustomDialog.content] slot parameter. The composable receives a
+ * [PermissionCustomDialogState] which can be used to dismiss the composable or
+ * to open the Android system settings (by default it opens the app settings, if
+ * if necessary that can be overridden with the [actionIntent][ShowCustomDialog.actionIntent]
+ * parameter).
+ *
+ * @param dialogState permission dialog state that determines whether this dialog is active,
+ * by default the dialog is active, meaning it is shown to the user as soon as this composable
+ * enters the composition. To control when the dialog should be shown create the state
+ * with [rememberPermissionDialogState] setting [isActive][PermissionDialogState.isActive]
+ * to `false`, then when it's time to show the dialog set it to `true` (for example, in an
+ * `onClick` listener of a button that should trigger the permission request).
+ * Note that `isActive` is automatically set to `false` before any of the callbacks is called:
+ * [onGranted], [onDenied], and [Execute] lambda [block][Execute.block] (if [Execute] is used
+ * as the [onPermanentlyDenied] action).
+ */
 @Composable
 public fun PermissionDialog(
     permission: String,
