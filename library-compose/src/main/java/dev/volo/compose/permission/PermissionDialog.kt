@@ -63,11 +63,14 @@ public fun PermissionDialog(
         },
         onDeniedPermanently = {
             when (onPermanentlyDenied) {
-                is Execute -> onPermanentlyDenied.block()
-                is ShowCustomDialog -> isCustomDialogVisible = true
+                is Execute -> {
+                    dialogState.hide()
+                    onPermanentlyDenied.block()
+                }
                 is OpenSystemSettings -> settingsLauncher.launch(
                     onPermanentlyDenied.actionIntent(appPackageName)
                 )
+                is ShowCustomDialog -> isCustomDialogVisible = true
             }
         },
     )
@@ -124,16 +127,17 @@ public fun rememberPermissionDialogState(isActive: Boolean = true): PermissionDi
 
 @Stable
 public sealed interface OnPermissionPermanentlyDenied {
-    public data class ShowCustomDialog(
-        public val actionIntent: (packageName: String) -> Intent = ::openSystemSettingsIntent,
-        public val dialog: @Composable (PermissionCustomDialogState) -> Unit,
-    ) : OnPermissionPermanentlyDenied
+
+    public data class Execute(val block: () -> Unit) : OnPermissionPermanentlyDenied
 
     public data class OpenSystemSettings(
         val actionIntent: (packageName: String) -> Intent = ::openSystemSettingsIntent
     ) : OnPermissionPermanentlyDenied
 
-    public data class Execute(val block: () -> Unit) : OnPermissionPermanentlyDenied
+    public data class ShowCustomDialog(
+        public val actionIntent: (packageName: String) -> Intent = ::openSystemSettingsIntent,
+        public val dialog: @Composable (PermissionCustomDialogState) -> Unit,
+    ) : OnPermissionPermanentlyDenied
 }
 
 public class PermissionCustomDialogState(
